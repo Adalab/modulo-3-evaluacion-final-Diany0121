@@ -1,1 +1,60 @@
-@import 'core/reset'
+@import "core/reset";
+@import "core/page";
+
+
+.header {
+  width: 100%;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px 0;
+  
+
+  &_logo {
+    width: 350px;
+  }
+
+  &_title {
+    font-size: 30px;
+    font-weight: 500;
+    color: white;
+    padding: 10px 0;
+    text-transform: uppercase;
+  }
+}
+
+
+.card {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(139, 0, 0);
+  width: 100px;
+
+  &_image {
+    width: 100px;
+    height: 150px;
+  }
+  &_text {
+    text-align: center;
+    padding: 5px;
+    color: white;
+  }
+}
+
+
+.cardLi {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 15px;
+  &--card {
+    width: 150px;
+    height: 250px;
+  }
+}
+
+.cardUl{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
