@@ -8,6 +8,7 @@ import CharacterList from "./characters/CharacterList";
 import Filters from "./filters/Filters";
 // api
 import getDataApi from "../services/api";
+import CharacterDetail from "./characters/CharacterDetail";
 
 
 function App() {
@@ -49,9 +50,13 @@ function App() {
             </>
           }
         />
+
+        <Route  path="/detail/:urlId" element={<CharacterDetail character={characters}}/> />
       </Routes>
     </>
   );
 }
 
 export default App;
+
+

@@ -1,5 +1,6 @@
 const getDataApi = () => {
-    return fetch('https://hp-api.onrender.com/api/characters/house/gryffindor')
+    //return fetch('https://hp-api.onrender.com/api/characters/house/gryffindor')
+    return fetch('https://hp-api.onrender.com/api/characters')
     .then(response => response.json())
     .then((data)=> {
         //map para obtener los datos que hay en results de la API.
