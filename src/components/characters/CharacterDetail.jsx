@@ -5,13 +5,15 @@ import "../../scss/App.scss"
 
 function CharacterDetail({character}) {
 
-  const { urlId } = useParams();
+  const { idUser } = useParams();
 
-  const cardDetail = character.find((character) => character.id === urlId);
+  const cardDetail = character.find((character) => character.id === idUser) ;
+
 
   return (
     <section>
-      <CharacterCard character={cardDetail}/>
+      <CharacterCard character={cardDetail} />
+      
     </section>
   )
 }

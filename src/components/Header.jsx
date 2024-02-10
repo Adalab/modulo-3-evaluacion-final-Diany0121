@@ -8,7 +8,7 @@ function Header() {
   return (
     <header className="header">
         <img src={logo} alt='Harry Potter' className="header_logo"/>
-        <h1 className="header_title">Harry Potter list of characters</h1>
+        <h1 className="header_title">Lista de personajes de Harry Potter</h1>
     </header>
   )
 }

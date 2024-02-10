@@ -3,8 +3,8 @@ import React from "react";
 function FiltersHouse({handleFilterHouse}) {
   return (
     <>
-      <label className="inputName">Buscar por casa:</label>
-      <select onChange={(ev) => {handleFilterHouse(ev.target.value)}}>
+      <label className="labelHouse">Buscar por casa:</label>
+      <select className="labelHouse_select" onChange={(ev) => {handleFilterHouse(ev.target.value)}}>
         <option value="Gryffindor">Gryffindor</option>
         <option value="Ravenclaw">Ravenclaw</option>
         <option value="Slytherin">Slytherin</option>

@@ -10,11 +10,11 @@ import Filters from "./filters/Filters";
 import getDataApi from "../services/api";
 import CharacterDetail from "./characters/CharacterDetail";
 
-
 function App() {
   const [characters, setCharacter] = useState([]); // variable de estado para la api
   const [filterName, setFilterName] = useState(""); // variable de estado para filtar por nombre
-  const [filterHouse, setFilterHouse] = useState ('Gryffindor');
+  const [filterGenere, setFilterGenere] = useState("");
+  const [filterHouse, setFilterHouse] = useState("Gryffindor");
 
   useEffect(() => {
     getDataApi().then((characters) => {
@@ -22,19 +22,32 @@ function App() {
     });
   }, []);
 
-  const handleFilterName = (value) =>{
-    setFilterName(value)
-  }
+  const handleFilterName = (value) => {
+    setFilterName(value);
+  };
 
   const handleFilterHouse = (value) => {
-    setFilterHouse(value)
-  }
+    setFilterHouse(value);
+  };
 
+  const handleFilterGenere = (value) => {
+    setFilterGenere(value);
+  };
 
-  const filterUser = characters.filter((character)=> character.name.toLowerCase().includes(filterName))
-  .filter((character) => character.house === filterHouse)
-
-  
+  const filterUser = characters
+    .filter((character) =>
+      character.name.toLowerCase().includes(filterName.toLocaleLowerCase())
+    )
+    .filter((character) => character.house === filterHouse)
+    .filter((character) => {
+      if (filterGenere === "female") {
+        return character.gender === "female";
+      } else if (filterGenere === "male") {
+        return character.gender === "male";
+      } else {
+        return true;
+      }
+    });
 
   return (
     <>
@@ -45,18 +58,25 @@ function App() {
           path="/"
           element={
             <>
-              <Filters filterName={filterName} handleFilterName={handleFilterName} handleFilterHouse={handleFilterHouse}/>
-              <CharacterList  characters={filterUser}/>
+              <Filters
+                filterName={filterName}
+                handleFilterName={handleFilterName}
+                handleFilterHouse={handleFilterHouse}
+                handleFilterGenere={handleFilterGenere}
+                filterGenere={filterGenere}
+              />
+              <CharacterList characters={filterUser} />
             </>
           }
         />
 
-        <Route  path="/detail/:urlId" element={<CharacterDetail character={characters}}/> />
+        <Route
+          path="/detail/:idUser"
+          element={<CharacterDetail character={characters} />}
+        />
       </Routes>
     </>
   );
 }
 
 export default App;
-
-
