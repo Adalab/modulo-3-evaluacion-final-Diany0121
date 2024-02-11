@@ -6,15 +6,17 @@ import "../scss/App.scss";
 import Header from "./Header";
 import CharacterList from "./characters/CharacterList";
 import Filters from "./filters/Filters";
+import Footer from "./Footer";
 // api
 import getDataApi from "../services/api";
 import CharacterDetail from "./characters/CharacterDetail";
 
 function App() {
   const [characters, setCharacter] = useState([]); // variable de estado para la api
-  const [filterName, setFilterName] = useState(""); // variable de estado para filtar por nombre
-  const [filterGenere, setFilterGenere] = useState("");
-  const [filterHouse, setFilterHouse] = useState("Gryffindor");
+  const [filterName, setFilterName] = useState(""); // variable de estado para filtrar por nombre
+  const [filterGenere, setFilterGenere] = useState(""); // variable de estado para filtrar genero
+  const [filterHouse, setFilterHouse] = useState("Gryffindor"); // variable de estado para filtrar por casa
+  const [filterSpecies, setFilterSpecies] = useState ("human"); // variable de estado para filtrar por especies
 
   useEffect(() => {
     getDataApi().then((characters) => {
@@ -34,10 +36,13 @@ function App() {
     setFilterGenere(value);
   };
 
+  const handleFilterSpecies = (value) =>{
+    setFilterSpecies(value);
+  }
+
   const filterUser = characters
     .filter((character) =>
-      character.name.toLowerCase().includes(filterName.toLocaleLowerCase())
-    )
+      character.name.toLowerCase().includes(filterName.toLocaleLowerCase()))
     .filter((character) => character.house === filterHouse)
     .filter((character) => {
       if (filterGenere === "female") {
@@ -47,7 +52,8 @@ function App() {
       } else {
         return true;
       }
-    });
+    })
+    .filter((character) => character.species === filterSpecies)
 
   return (
     <>
@@ -64,6 +70,8 @@ function App() {
                 handleFilterHouse={handleFilterHouse}
                 handleFilterGenere={handleFilterGenere}
                 filterGenere={filterGenere}
+                handleFilterSpecies={handleFilterSpecies}
+                filterSpecies={filterSpecies}
               />
               <CharacterList characters={filterUser} />
             </>
@@ -75,6 +83,8 @@ function App() {
           element={<CharacterDetail character={characters} />}
         />
       </Routes>
+
+      <Footer />
     </>
   );
 }

@@ -11,6 +11,7 @@ const getDataApi = () => {
                 image: eachCharacter.image,
                 name: eachCharacter.name,
                 house: eachCharacter.house,  
+                gender: eachCharacter.gender
             }
         });
         return characters; //Este es mi nuevo objeto creado con los datos que me interesan. Lo tengo que retornar para que no se quede guardado en el fetch, de esta manera puedo utilizarlo ahora en App.
