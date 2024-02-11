@@ -40,6 +40,15 @@ function App() {
     setFilterSpecies(value);
   }
 
+  const handleReset = (ev) => {
+    ev.preventDefault();
+    setFilterName('');
+    setFilterHouse("Gryffindor");
+    setFilterGenere('');
+    setFilterSpecies("human");
+
+  }
+
   const filterUser = characters
     .filter((character) =>
       character.name.toLowerCase().includes(filterName.toLocaleLowerCase()))
@@ -72,8 +81,9 @@ function App() {
                 filterGenere={filterGenere}
                 handleFilterSpecies={handleFilterSpecies}
                 filterSpecies={filterSpecies}
+                handleReset={handleReset}
               />
-              <CharacterList characters={filterUser} />
+              <CharacterList characters={filterUser} filterName={filterName}/>
             </>
           }
         />

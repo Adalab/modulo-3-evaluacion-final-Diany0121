@@ -3,7 +3,15 @@ import "../../scss/App.scss";
 import { Link } from "react-router-dom";
 import CharacterDetail from "./CharacterDetail";
 
-function CharacterList({ characters }) {
+function CharacterList({ characters, filterName}) {
+  if (characters.length === 0) {
+    return (
+      <p className="msj">
+        No hay ningún personaje que coincida con {filterName}
+      </p>
+    );
+  } 
+
   const renderUserList = characters.map((character) => {
     return (
       <li key={character.id} className="cardLi">
